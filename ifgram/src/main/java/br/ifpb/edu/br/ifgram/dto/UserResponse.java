@@ -1,6 +1,7 @@
 package br.ifpb.edu.br.ifgram.dto;
 
-import org.apache.catalina.User;
+
+import br.ifpb.edu.br.ifgram.Model.User;
 
 public record UserResponse(Long id, String nome, String email) {
     public static UserResponse from(User user){

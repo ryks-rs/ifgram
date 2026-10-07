@@ -15,4 +15,21 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    public User(String nome, String email) {
+        this.email = email;
+        this.nome = nome;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
