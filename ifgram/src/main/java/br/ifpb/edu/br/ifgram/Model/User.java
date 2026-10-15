@@ -32,4 +32,16 @@ public class User {
     public String getEmail() {
         return email;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

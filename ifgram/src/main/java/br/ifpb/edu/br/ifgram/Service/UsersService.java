@@ -8,6 +8,8 @@ import br.ifpb.edu.br.ifgram.dto.UserResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class UsersService {
 
@@ -16,6 +18,7 @@ public class UsersService {
     public UsersService(UserRepository repository) {
         this.repository = repository;
     }
+
     @Transactional
     public UserResponse criar(UserRequest request) throws Exception {
         if (repository.existsByEmail(request.email()))  {
@@ -23,6 +26,17 @@ public class UsersService {
         }
         User salvo = repository.save(new User(request.nome(), request.email()));
         return UserResponse.from(salvo);
+    }
+    public UserResponse atualizarUsuario(UserRequest request) throws Exception {
+        Optional<User> usuario = repository.findByEmail(request.email());
+        if (usuario.isEmpty()) {
+            throw new Exception("Usuário não existe na base de dados,");
+        }
+        User usuarioSalvo = usuario.get();
+        usuarioSalvo.setNome(request.nome());
+        repository.save(usuarioSalvo);
+
+        return UserResponse.from(usuarioSalvo);
     }
 
 }
