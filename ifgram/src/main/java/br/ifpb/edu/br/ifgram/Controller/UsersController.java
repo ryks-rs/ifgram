@@ -26,8 +26,8 @@ public class UsersController {
     }
 
     @DeleteMapping
-    public String deleteUser(){
-        return "Chamei o endpoint como um DELETE!";
+    public void  deleteUser(UserRequest request) throws Exception{
+        service.deletarUsuario(request);
     }
 
     @PatchMapping

@@ -39,5 +39,15 @@ public class UsersService {
         return UserResponse.from(usuarioSalvo);
     }
 
+    public void deletarUsuario(UserRequest request) throws Exception{
+        Optional<User> usuario = repository.findByEmail((request.email()));
+        if (usuario.isEmpty()) {
+            throw new Exception("usuário não encontrado!");
+        }
+
+        User usuarioDeletar = usuario.get();
+        repository.delete(usuarioDeletar);
+    }
+
 }
 
